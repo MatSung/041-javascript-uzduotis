@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu+Condensed&display=swap');
+
+*{
+    font-family: 'Ubuntu Condensed', sans-serif;
+    box-sizing: border-box;
+}
+
+h1{
+    text-align: center;
+}
+
+
+body{
+    background-color: rgb(240,240,240);
+    margin-bottom: 500px;
+    margin-top: 200px;
+}
+
+
+.form-title{
+    background-color: white;
+    border-radius: 25px;
+    max-width: 200px;
+    margin: auto;
+    font-size: 20px;
+}
+
+.form-container, .students-container{
+    max-width: 500px;
+    min-width: 500px;
+    /* margin: 0 auto; */
+    border-radius: 25px;
+    background-color: rgb(250,250,250);
+    padding: 25px 50px;
+    box-shadow: 0 0 30px rgba(0,0,0, 0.2);
+}
+
+.inputs-container{
+    margin-top: 50px;
+    
+}
+
+.input-container{
+    margin-bottom: 25px;
+}
+
+.input-container label,
+.input-container input{
+    display: block;
+    width: 100%;
+}
+
+.input-container label{
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.input-container input{
+    height: 2em;
+}
+
+.radios{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.radios{
+    margin-bottom: 25px;
+}
+
+.button-container{
+    display: flex;
+    justify-content: center
+}
+
+#submit{
+    font-size: 20px;
+    padding: 10px 25px;
+    border-radius: 25px;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}

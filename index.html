@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Forma</title>
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="form-title">
+            <h1>Forma</h1>
+        </div>
+        <!-- <form id="my-form" action="#"> -->
+            <div class="inputs-container">
+                <div class="input-container">
+                    <label for="name">Vardas</label>
+                    <input type="text" id="name" placeholder="Vardas" required>
+                </div>
+
+                <div class="input-container">
+                    <label for="surname">Pavardė</label>
+                    <input type="text" id="surname" placeholder="Pavardė" required>
+                </div>
+                <div class="input-container">
+                    <label for="age">Amžius</label>
+                    <input type="number" name="age" min="18" max="120" id="age" step="1" required>
+                </div>
+                <div class="input-container">
+                    <label for="tel">Telefono nr.</label>
+                    <input type="tel" id="phone">
+                </div>
+                <div class="input-container">
+                    <label for="email">El. paštas</label>
+                    <input type="email" name="email" id="email">
+                </div>
+                <div class="input-container">
+                    <label for="rating">Kiek vertinate savo IT žinias?</label>
+                    <input type="range" name="rating" id="rating" min="1" max="10" step="1"
+                        oninput="this.nextElementSibling.value = this.value">
+                    <output id="rating-output">1</output>
+
+                </div>
+
+                <div class="radios">
+                    <div class="radio-input-container">
+                        <input type="radio" name="group-radio" id="group-select-1" class="group-select" value="1" checked>
+                        <label for="group-select-1" id="group-select-label-1">CAFS 1gr.</label>
+                    </div>
+
+                    <div class="radio-input-container">
+                        <input type="radio" name="group-radio" id="group-select-2" class="group-select" value="2">
+                        <label for="group-select-2" id="group-select-label-2">CAFS 2gr.</label>
+                    </div>
+                    <div class="radio-input-container">
+                        <input type="radio" name="group-radio" id="group-select-3" class="group-select" value="3">
+                        <label for="group-select-3" id="group-select-label-3">CAFS 3gr.</label>
+                    </div>
+                    <div class="radio-input-container">
+                        <input type="radio" name="group-radio" id="group-select-4" class="group-select" value="4">
+                        <label for="group-select-4" id="group-select-label-4">CAFS 4gr.</label>
+                    </div>
+                    <div class="radio-input-container">
+                        <input type="radio" name="group-radio" id="group-select-5" class="group-select" value="5">
+                        <label for="group-select-5" id="group-select-label-5">CAFS 5gr.</label>
+                    </div>
+                    <div class="radio-input-container">
+                        <input type="radio" name="group-radio" id="group-select-6" class="group-select" value="6">
+                        <label for="group-select-6" id="group-select-label-6">CAFS 6gr.</label>
+                    </div>
+                    <div class="radio-input-container">
+                        <input type="radio" name="group-radio" id="group-select-7" class="group-select" value="7">
+                        <label for="group-select-7" id="group-select-label-7">CAFS 7gr.</label>
+                    </div>
+                    <div class="radio-input-container">
+                        <input type="radio" name="group-radio" id="group-select-8" class="group-select" value="8">
+                        <label for="group-select-8" id="group-select-label-8">CAFS 8gr.</label>
+                    </div>
+                    <div class="radio-input-container">
+                        <input type="radio" name="group-radio" id="group-select-9" class="group-select" value="9">
+                        <label for="group-select-9" id="group-select-label-9">CAFS 9gr.</label>
+                    </div>
+                    <div class="radio-input-container">
+                        <input type="radio" name="group-radio" id="group-select-10" class="group-select" value="10">
+                        <label for="group-select-10" id="group-select-label-10">CAFS 10gr.</label>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button name="submit" id="submit">Submit</button>
+                </div>
+            </div>
+        <!-- </form> -->
+    </div>
+
+    <div class="students-container">
+        <div class="form-title">
+            <h1>Students</h1>
+        </div>
+        <div id="student-list">
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
