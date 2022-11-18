@@ -44,22 +44,23 @@ body{
     margin-bottom: 25px;
 }
 
-.input-container label,
-.input-container input{
+.input-container > label,
+.input-container > input{
     display: block;
     width: 100%;
 }
 
-.input-container label{
+.input-container > label{
     margin-bottom: 10px;
     font-size: 20px;
 }
 
-.input-container input{
+.input-container > input{
     height: 2em;
 }
 
-.radios{
+.radios,
+.checkboxes{
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -84,4 +85,46 @@ body{
     display: flex;
     justify-content: center;
     gap: 100px;
+}
+
+#student-list{
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 25px;
+    justify-content: flex-start;
+}
+
+.student-list-item{
+    background-color: rgb(37, 150, 190);
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.student-list-item .student-name,
+.student-list-item .student-surname{
+    font-size: 20px;
+}
+
+
+
+.student-list-item .student-age{
+    font-size: 30px;
+}
+
+.student-list-item .student-phone{
+    font-size: 15px;
+    display: block;
+}
+
+.student-list-item .student-email{
+    font-size: 15px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.student-list-item .student-rating{
+    font-size: 25px;
+    display: block;
 }

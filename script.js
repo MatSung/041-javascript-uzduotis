@@ -9,6 +9,7 @@ submitButton.addEventListener("click", function(){submitMe()});
 //data example
 
 let dataExample = ["Vardas", "Pavarde", 20, "+37060000000", "me@me.me", 10, "CAFS 1gr."];
+let dataFormat = ["name", "surname", "age", "phone", "email", "rating", "group"]
 
 
 function submitMe() {
@@ -25,7 +26,7 @@ function submitMe() {
     input.push(ageInput.value);
     input.push(phoneInput.value);
     input.push(emailInput.value);
-    input.push(rangeInput.value);
+    input.push(rangeInput.value + '/10');
 
     let groupValue = document.querySelector('input[name="group-radio"]:checked').value;
     let groupName = document.getElementById("group-select-label-" + groupValue).innerText;
@@ -37,6 +38,20 @@ function submitMe() {
 }
 
 function createStudentItem(data) {
-    
+    let newDiv = document.createElement("div");
+    newDiv.classList.add("student-list-item");
+
+
+
+    data.forEach((element, index) => {
+        let newSpan = document.createElement("span");
+        newSpan.classList.add("student-" + dataFormat[index]);
+
+        newSpan.innerText = element;
+        newDiv.append(newSpan);
+    });
+
+    let studentList = document.getElementById("student-list");
+    studentList.append(newDiv);
 }
 

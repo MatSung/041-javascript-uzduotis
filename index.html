@@ -15,39 +15,42 @@
             <h1>Forma</h1>
         </div>
         <!-- <form id="my-form" action="#"> -->
-            <div class="inputs-container">
-                <div class="input-container">
-                    <label for="name">Vardas</label>
-                    <input type="text" id="name" placeholder="Vardas" required>
-                </div>
+        <div class="inputs-container">
+            <div class="input-container">
+                <label for="name">Vardas</label>
+                <input type="text" id="name" placeholder="Vardas" required>
+            </div>
 
-                <div class="input-container">
-                    <label for="surname">Pavardė</label>
-                    <input type="text" id="surname" placeholder="Pavardė" required>
-                </div>
-                <div class="input-container">
-                    <label for="age">Amžius</label>
-                    <input type="number" name="age" min="18" max="120" id="age" step="1" required>
-                </div>
-                <div class="input-container">
-                    <label for="tel">Telefono nr.</label>
-                    <input type="tel" id="phone">
-                </div>
-                <div class="input-container">
-                    <label for="email">El. paštas</label>
-                    <input type="email" name="email" id="email">
-                </div>
-                <div class="input-container">
-                    <label for="rating">Kiek vertinate savo IT žinias?</label>
-                    <input type="range" name="rating" id="rating" min="1" max="10" step="1"
-                        oninput="this.nextElementSibling.value = this.value">
-                    <output id="rating-output">1</output>
+            <div class="input-container">
+                <label for="surname">Pavardė</label>
+                <input type="text" id="surname" placeholder="Pavardė" required>
+            </div>
+            <div class="input-container">
+                <label for="age">Amžius</label>
+                <input type="number" name="age" min="18" max="120" id="age" step="1" required>
+            </div>
+            <div class="input-container">
+                <label for="tel">Telefono nr.</label>
+                <input type="tel" id="phone">
+            </div>
+            <div class="input-container">
+                <label for="email">El. paštas</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <div class="input-container">
+                <label for="rating">Kiek vertinate savo IT žinias?</label>
+                <input type="range" name="rating" id="rating" min="1" max="10" step="1"
+                    oninput="this.nextElementSibling.value = this.value">
+                <output id="rating-output">#</output>
 
-                </div>
+            </div>
+            <div class="input-container">
+                <label for="">Grupė</label>
 
                 <div class="radios">
                     <div class="radio-input-container">
-                        <input type="radio" name="group-radio" id="group-select-1" class="group-select" value="1" checked>
+                        <input type="radio" name="group-radio" id="group-select-1" class="group-select" value="1"
+                            checked>
                         <label for="group-select-1" id="group-select-label-1">CAFS 1gr.</label>
                     </div>
 
@@ -88,10 +91,23 @@
                         <label for="group-select-10" id="group-select-label-10">CAFS 10gr.</label>
                     </div>
                 </div>
-                <div class="button-container">
-                    <button name="submit" id="submit">Submit</button>
+
+                <div class="input-container">
+                    <label for="languages">Programavimo Kalbos</label>
+
+                    <div class="checkboxes">
+                        <div class="checkbox-input-container">
+                            <input type="checkbox" name="group-checkbox" id="checkbox-select-1" class="group-select" value="10">
+                            <label for="group-select-10" id="group-select-label-10">CAFS 10gr.</label>
+                        </div>
+                    </div>
                 </div>
+
             </div>
+            <div class="button-container">
+                <button name="submit" id="submit">Submit</button>
+            </div>
+        </div>
         <!-- </form> -->
     </div>
 
@@ -100,7 +116,15 @@
             <h1>Students</h1>
         </div>
         <div id="student-list">
-
+            <div class="student-list-item">
+                <span class="student-name">Tavo</span>
+                <span class="student-surname">Mama</span>
+                <span class="student-age">27</span>
+                <span class="student-phone">+3213123123</span>
+                <span class="student-email">vienas@du.trys</span>
+                <span class="student-rating">1/10</span>
+                <span class="student-group">CAFS 4gr.</span>
+            </div>
         </div>
     </div>
 
