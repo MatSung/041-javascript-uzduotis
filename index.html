@@ -92,18 +92,38 @@
                     </div>
                 </div>
 
-                <div class="input-container">
+                <div class="input-container" id="languages-container">
                     <label for="languages">Programavimo Kalbos</label>
-
-                    <div class="checkboxes">
+                    <div class="checkboxes" id="checkboxes">
                         <div class="checkbox-input-container">
-                            <input type="checkbox" name="group-checkbox" id="checkbox-select-1" class="group-select" value="10">
-                            <label for="group-select-10" id="group-select-label-10">CAFS 10gr.</label>
+                            <input type="checkbox" name="group-checkbox" id="checkbox-select-1" class="group-select checkbox-select" value="Python">
+                            <label for="checkbox-select-1" id="group-checkbox-label-1">Python</label>
+                        </div>
+                        <div class="checkbox-input-container">
+                            <input type="checkbox" name="group-checkbox" id="checkbox-select-2" class="group-select checkbox-select" value="C++">
+                            <label for="checkbox-select-2" id="group-checkbox-label-2">C++</label>
+                        </div>
+                        <div class="checkbox-input-container">
+                            <input type="checkbox" name="group-checkbox" id="checkbox-select-3" class="group-select checkbox-select" value="R">
+                            <label for="checkbox-select-3" id="group-checkbox-label-3">R</label>
+                        </div>
+                        <div class="checkbox-input-container">
+                            <input type="checkbox" name="group-checkbox" id="checkbox-select-4" class="group-select checkbox-select" value="PHP">
+                            <label for="checkbox-select-4" id="group-checkbox-label-4">PHP</label>
+                        </div>
+                        <div class="checkbox-input-container">
+                            <input type="checkbox" name="group-checkbox" id="checkbox-select-5" class="group-select checkbox-select" value="C#">
+                            <label for="checkbox-select-5" id="group-checkbox-label-5">C#</label>
                         </div>
                     </div>
                 </div>
 
             </div>
+
+            <div id="success-container" hidden>
+                <span id="success-span">Sukurtas Studentas </span>
+            </div>
+
             <div class="button-container">
                 <button name="submit" id="submit">Submit</button>
             </div>

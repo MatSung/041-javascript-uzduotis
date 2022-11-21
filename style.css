@@ -100,11 +100,13 @@ body{
     padding: 25px;
     border-radius: 10px;
     border: 1px solid black;
+    position: relative;
 }
 
 .student-list-item .student-name,
 .student-list-item .student-surname{
     font-size: 20px;
+    margin-right: 5px;
 }
 
 
@@ -127,4 +129,25 @@ body{
 .student-list-item .student-rating{
     font-size: 25px;
     display: block;
+}
+
+.student-list-item .student-list-item-languages{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.student-list-item .student-list-item-languages .student-languages{
+    border: 1px solid black;
+    padding: 2px;
+}
+
+#success-container{
+    border: 1px solid black;
+    background-color: greenyellow;
+    text-align: center;
+    padding: 3px;
+    margin-bottom: 10px;
+    /* visibility: hidden; */
 }
