@@ -23,6 +23,7 @@ body{
     max-width: 200px;
     margin: auto;
     font-size: 20px;
+    border: 1px solid black;
 }
 
 .form-container, .students-container{
@@ -154,4 +155,8 @@ body{
     padding: 3px;
     margin-bottom: 10px;
     /* visibility: hidden; */
+}
+
+.mistake{
+    border: 1px solid red;
 }
