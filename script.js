@@ -14,17 +14,36 @@ const sleep = async (milliseconds) => {
 let dataExample = ["Vardas", "Pavarde", 20, "+37060000000", "me@me.me", 10, "CAFS 1gr.", ['Python', 'C++']];
 let dataFormat = ["name", "surname", "age", "phone", "email", "rating", "group", "languages"]
 
+let groupValueIndex = ["CAFS 1gr.","CAFS 2gr.","CAFS 3gr.",
+"CAFS 4gr.","CAFS 5gr.","CAFS 6gr.","CAFS 7gr.","CAFS 8gr.","CAFS 9gr.","CAFS 10gr."];
+let languageValueIndex = ["Python", "C++", "R", "PHP", "C#"];
+
+//student list
+
+let studentList = document.getElementById("student-list");
 
 //Listen to submit button
 let submitButton = document.getElementById("submit");
 submitButton.addEventListener("click", function () { submitMe() });
+
+let saveButton = document.getElementById("save");
+saveButton.addEventListener("click", function () { saveEdit() });
+
+let cancelButton = document.getElementById("cancel");
+cancelButton.addEventListener("click", function () { cancelEdit() });
+
+//cancel and save changes button
+
 
 
 // success or fail at adding a new student
 let successContainer = document.getElementById("success-container");
 let successSpan = document.getElementById("success-span");
 
-// Live student array
+// Saved student array
+// let rootStudentArray = [];
+
+// Displayed student array
 let studentArray = [];
 
 //all of my form inputs
@@ -50,16 +69,30 @@ let checkboxesElements = [...document.getElementsByClassName("checkbox-select")]
 
 function submitMe() {
 
+
+    if(!getInputs()){
+        return 0;
+    }
+
+    let input = getInputs();
+    // console.log(input);
+
+    createStudentItem(input);
+
+    successSpan.innerText = `Pridėtas studentas ${input[0]} ${input[1]}`;
+    showSuccess();
+
+}
+
+function getInputs(){
     removeMistakes();
     if(!checkValidity()){
         alert("Laukeliai neužpildyti teisingai.");
         //nepavyko raudono mygtuko
 
-        console.log("mistakes found")
+        // console.log("mistakes found")
         return 0;
     }
-
-    
 
     let input = [];
     input.push(nameInput.value);
@@ -71,9 +104,9 @@ function submitMe() {
 
     //push groups
     let groupValue = document.querySelector('input[name="group-radio"]:checked').value;
-    let groupName = document.getElementById("group-select-label-" + groupValue).innerText;
+    // let groupName = document.getElementById("group-select-label-" + groupValue).innerText;
 
-    input.push(groupName);
+    input.push(groupValue);
 
     //push languages
     let languagesValues = [];
@@ -84,13 +117,7 @@ function submitMe() {
 
     input.push(languagesValues);
 
-    // console.log(input);
-
-    createStudentItem(input);
-
-    successSpan.innerText = `Pridėtas studentas ${input[0]} ${input[1]}`;
-    showSuccess();
-
+    return input;
 }
 
 function checkValidity(){
@@ -181,7 +208,7 @@ function createStudentItem(data) {
             element.forEach(element => {
                 let newSpan = document.createElement("span");
                 newSpan.classList.add("student-" + dataFormat[index]);
-                newSpan.innerText = element;
+                newSpan.innerText = languageValueIndex[element-1];
                 languagesDiv.append(newSpan);
             });
             newDiv.append(languagesDiv);
@@ -193,6 +220,9 @@ function createStudentItem(data) {
         newSpan.innerText = element;
         if (dataFormat[index] == "email") {
             newSpan.innerText = "Paslėptas";
+        }
+        if (dataFormat[index] == "group") {
+            newSpan.innerText = groupValueIndex[element-1];
         }
         newDiv.append(newSpan);
     });
@@ -211,11 +241,20 @@ function createStudentItem(data) {
     deleteButton.setAttribute("onclick", "deleteMe(this)");
     deleteButton.setAttribute("__index", studentArray.length);
 
+    //add edit button
+    let editButton = document.createElement("button");
+    editButton.innerText = "Redaguoti";
+    editButton.classList.add("edit-button");
+    editButton.setAttribute("onclick", "editMe(this)");
+    editButton.setAttribute("__index", studentArray.length);
+
     //student array length will need to be checked when fetching array from memory
     hideDetailsButton.setAttribute("__index", studentArray.length);
 
-    newDiv.append(hideDetailsButton);
+    newDiv.append(editButton);
     newDiv.append(deleteButton);
+    newDiv.append(hideDetailsButton);
+    
     // newDiv.append(studentArray.length);
 
     studentArray.push(data);
@@ -230,7 +269,7 @@ const showSuccess = async () => {
     // console.log("disabled");
 
 
-    await sleep(5000);
+    await sleep(1000);
 
     submitButton.toggleAttribute("disabled");
     successContainer.toggleAttribute("hidden");
@@ -264,9 +303,83 @@ function toggleEmail(button) {
 function deleteMe(button){
     let deletionIndex = button.getAttribute("__index");
     button.parentElement.remove();
-    let studentName = studentArray[deletionIndex][0] + " " + studentArray[deletionIndex][1]
     studentArray.splice(deletionIndex,1);
-    console.log(studentArray);
+    let studentName = studentArray[deletionIndex][0] + " " + studentArray[deletionIndex][1]
     successSpan.innerText = `Ištrintas studentas ${studentName}`;
+    redrawStudents();
     showSuccess();
+}
+
+
+function editMe(button){
+    let editIndex = button.getAttribute("__index");
+    let studentData = studentArray[editIndex];
+    textInputs.forEach((element, index) => {
+        element.value = studentData[index];
+    });
+    document.getElementById("rating-output").innerText =  studentData[5];
+    rangeInput.value = studentData[5].slice(0, -3);
+
+    //change radio checked item
+    document.querySelector('input[name="group-radio"]:checked').checked = false;
+    document.querySelector("#group-select-" + studentData[6]).checked = true;
+
+    //change language picks
+    checkboxesElements.forEach((element,index) => {
+        if(studentData[7].includes(String(index+1))) {
+            element.checked = true;
+        } else {
+            element.checked = false;
+        }
+    });
+
+
+    saveButton.setAttribute("__index", editIndex);
+    submitButton.toggleAttribute("hidden");
+    saveButton.toggleAttribute("hidden");
+    cancelButton.toggleAttribute("hidden");
+
+}
+function cancelEdit(){
+    submitButton.toggleAttribute("hidden");
+    saveButton.toggleAttribute("hidden");
+    cancelButton.toggleAttribute("hidden");
+}
+
+function reset(){
+    submitButton.removeAttribute("hidden");
+    saveButton.setAttribute("hidden","true");
+    cancelButton.setAttribute("hidden", "true");
+}
+
+function saveEdit(){
+    let editIndex = saveButton.getAttribute("__index");
+    if(!getInputs()){
+        return 0;
+    }
+    studentArray.push(getInputs());
+    studentArray.splice(editIndex, 1);
+    redrawStudents();
+    let studentName = studentArray[studentArray.length-1][0] + " " + studentArray[studentArray.length-1][1]
+    successSpan.innerText = `Atnaujintas studentas ${studentName}`;
+
+    showSuccess();
+    
+}
+
+function redrawStudents(){
+
+    //store temporarily the student array and redraw it again by adding it one by one to index correctly
+    let tempList = studentArray;
+    studentArray = [];
+    studentList.textContent = "";
+    tempList.forEach(element => {
+        createStudentItem(element);
+    });
+    console.log("redrawn successfully");
+    reset();
+}
+
+function filterStudents(){
+    //on update on option or filter input, query all that match the filtered index
 }

@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-h1{
+h1, h3{
     text-align: center;
 }
 
@@ -14,6 +14,18 @@ body{
     background-color: rgb(240,240,240);
     margin-bottom: 500px;
     margin-top: 200px;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+select{
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 10px;
 }
 
 
@@ -26,7 +38,7 @@ body{
     border: 1px solid black;
 }
 
-.form-container, .students-container{
+.form-container, .students-container, .filter-container{
     max-width: 600px;
     min-width: 600px;
     /* margin: 0 auto; */
@@ -34,6 +46,11 @@ body{
     background-color: rgb(250,250,250);
     padding: 25px 50px;
     box-shadow: 0 0 30px rgba(0,0,0, 0.2);
+}
+
+.filter-container{
+    margin: 0 auto;
+    margin-bottom: 50px;
 }
 
 .inputs-container{
@@ -76,17 +93,15 @@ body{
     justify-content: center
 }
 
-#submit{
+#submit,
+#save,
+#cancel{
     font-size: 20px;
     padding: 10px 25px;
     border-radius: 25px;
 }
 
-body{
-    display: flex;
-    justify-content: center;
-    gap: 100px;
-}
+
 
 #student-list{
     display: flex;
