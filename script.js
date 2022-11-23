@@ -1,17 +1,19 @@
 
 
-
-// document.querySelector('input[name="group-radio"]:checked').value;
-
-//data example
-
 const sleep = async (milliseconds) => {
     await new Promise(resolve => {
         return setTimeout(resolve, milliseconds)
     });
 };
 
-let dataExample = ["Vardas", "Pavarde", 20, "+37060000000", "me@me.me", 10, "CAFS 1gr.", ['Python', 'C++']];
+let dataExample = ["Vardas", "Pavarde", 20, "+37060000000", "me@me.me", 10, 1, ["1", "2"]];
+let dataDefault = [
+    ["Juozas", "Petraitis", 45, "+37060000000", "me@me.me", "5/10", 4, ["1", "2", "3"]],
+    ["Aloyzas", "Baltrušaitis", 32, "+37060000000", "aloizas@me.me", "3/10", 6, ["1", "4", "5"]],
+    ["Imran", "Khan", 64, "+37060000000", "imran@me.me", "1/10", 5, ["2", "4"]],
+    ["Albertas", "Kakanauskas", 20, "+37060000000", "albertas@me.me", "9/10", 10, ["1", "2", "3", "4", "5"]]
+];
+
 let dataFormat = ["name", "surname", "age", "phone", "email", "rating", "group", "languages"]
 
 let groupValueIndex = ["CAFS 1gr.","CAFS 2gr.","CAFS 3gr.",
@@ -26,22 +28,17 @@ let studentList = document.getElementById("student-list");
 let submitButton = document.getElementById("submit");
 submitButton.addEventListener("click", function () { submitMe() });
 
+//Listen to save button
 let saveButton = document.getElementById("save");
 saveButton.addEventListener("click", function () { saveEdit() });
 
+//Listen to cancel button
 let cancelButton = document.getElementById("cancel");
 cancelButton.addEventListener("click", function () { cancelEdit() });
-
-//cancel and save changes button
-
-
 
 // success or fail at adding a new student
 let successContainer = document.getElementById("success-container");
 let successSpan = document.getElementById("success-span");
-
-// Saved student array
-// let rootStudentArray = [];
 
 // Displayed student array
 let studentArray = [];
@@ -66,6 +63,19 @@ let checkboxesElements = [...document.getElementsByClassName("checkbox-select")]
 
 // console.log(checkboxesElements);
 
+//filter inputs
+let filterOptionInput = document.getElementById("filter-option");
+let filterCriteriaInput = document.getElementById("filter-criteria");
+
+filterOptionInput.addEventListener("change",function () { filterStudents() });
+filterCriteriaInput.addEventListener("input",function () { filterStudents() });
+
+repopulateList();
+
+function repopulateList(){
+    studentArray = dataDefault;
+    redrawStudents();
+}
 
 function submitMe() {
 
@@ -194,9 +204,18 @@ function removeMistakes(){
     }
 }
 
+function clearInputs(){
+    //clear inputs
+}
+
+function saveToStorage(){
+    //save current array to storage
+}
+
 function createStudentItem(data) {
     let newDiv = document.createElement("div");
     newDiv.classList.add("student-list-item");
+    newDiv.setAttribute("__index", studentArray.length);
 
 
     //for every data format entry array it and make all the required items for the div
@@ -335,9 +354,9 @@ function editMe(button){
 
 
     saveButton.setAttribute("__index", editIndex);
-    submitButton.toggleAttribute("hidden");
-    saveButton.toggleAttribute("hidden");
-    cancelButton.toggleAttribute("hidden");
+    submitButton.setAttribute("hidden","true");
+    saveButton.removeAttribute("hidden");
+    cancelButton.removeAttribute("hidden");
 
 }
 function cancelEdit(){
@@ -369,7 +388,7 @@ function saveEdit(){
 
 function redrawStudents(){
 
-    //store temporarily the student array and redraw it again by adding it one by one to index correctly
+    //store temporarily the student array and redraw it again by adding it one by one for it to index correctly
     let tempList = studentArray;
     studentArray = [];
     studentList.textContent = "";
@@ -382,4 +401,33 @@ function redrawStudents(){
 
 function filterStudents(){
     //on update on option or filter input, query all that match the filtered index
+    let allItems = document.getElementsByClassName("student-list-item");
+    for (let i = 0; i < allItems.length; i++) {
+        const element = allItems[i];
+        element.hidden = false;
+    }
+    
+    if(!filterCriteriaInput.value){
+        //disable all filters
+        return 0;
+    }
+    console.log("i have updates");
+    //reset all
+    
+    //check option
+    let currentOption = filterOptionInput.value;
+    let currentOptionIndex = dataFormat.indexOf(currentOption);
+    studentArray.forEach((element,index) => {
+        // console.log(element[currentOptionIndex]);
+        // console.log(filterCriteriaInput.value);
+        // console.log(".student-list-item:nth-of-type("+(index+1)+") > .student-"+dataFormat[currentOptionIndex]);
+        if(!element[currentOptionIndex].includes(filterCriteriaInput.value)){
+            // console.log(element[currentOptionIndex]);
+            document.querySelector(".student-list-item:nth-of-type("+(index+1)+") > .student-"+dataFormat[currentOptionIndex]).parentElement.hidden = true;
+        }
+        //i need to see which DON'T include and hide those
+    });
+
+    //search by criteria
+
 }
